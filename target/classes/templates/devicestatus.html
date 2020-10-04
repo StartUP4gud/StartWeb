@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FLOW GENERATOR</title>
+	<link rel="icon" type="image/png" href="/images/timg.png" />
+
+    <!-- Global stylesheets -->
+    <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/colors.css" rel="stylesheet" type="text/css" />
+    <!-- /global stylesheets -->
+
+
+    <script type="text/javascript" src="/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/core/libraries/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script type="text/javascript" src="/assets/js/plugins/pickers/daterangepicker.js"></script>
+    <!-- Theme JS files -->
+	<script type="text/javascript" src="/assets/js/core/libraries/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/assets/js/core/app.js"></script>
+</head>
+
+<body class="navbar-bottom login-container">
+
+    <div th:include="template :: menu"></div>
+    <div th:include="menu_list :: menu_list"></div>
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+                <div class="sidebar sidebar-secondary sidebar-default">
+                        <div class="sidebar-content">
+                <!-- Completeness stats -->
+                <div class="sidebar-category">
+                        <div class="category-title">
+                            <span>Completeness stats</span>
+                            <ul class="icons-list">
+                                <li><a href="#" data-action="collapse"></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="category-content">
+                            <ul class="progress-list">
+                                <li>
+                                    <label>CPU Usage <span id="cpu_percent"></span></label>
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-danger">
+<!--                                             <span class="sr-only">80% Complete</span>
+ -->                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label>RAM USAGE <span id="memory_percent"></span></label>
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-info" >
+<!--                                             <span class="sr-only">70% Complete</span>
+ -->                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label>STORAGE <span id="storage_percent"></span></label>
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-primary" >
+<!--                                             <span class="sr-only">50% Complete</span>
+ -->                                        </div>
+                                    </div>
+                                </li>
+                               <!--  <li>
+                                    <label>NETWORK <span>60%</span></label>
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-success" style="width: 60%">
+                                            <span class="sr-only">60% Complete</span>
+                                        </div>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /completeness stats -->
+                            <!-- Action buttons -->
+                            <div class="sidebar-category">
+                                <div class="category-title">
+                                    <span>Action buttons</span>
+                                    <ul class="icons-list">
+                                        <li><a href="#" data-action="collapse"></a></li>
+                                    </ul>
+                                </div>
+        
+                                <div class="category-content">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <button class="btn bg-teal-400 btn-block btn-float btn-float-lg legitRipple" onclick="cpu_usage()" type="button"><i class="icon-chip"></i> <span>CPU</span></button>
+                                            <button class="btn bg-purple-300 btn-block btn-float btn-float-lg legitRipple" onclick="storage_stat()" type="button"><i class="icon-database"></i> <span>STORAGE</span></button>
+                                        </div>
+                                        
+                                        <div class="col-xs-6">
+                                            <button class="btn bg-warning-400 btn-block btn-float btn-float-lg legitRipple" onclick="ram_usage()" type="button"><i class="icon-stats-bars"></i> <span>RAM</span></button>
+                                            <button class="btn bg-blue btn-block btn-float btn-float-lg legitRipple" onclick="network_usage()" type="button"><i class="icon-lan"></i> <span>NETWORK</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /action buttons -->
+                                  
+
+                           
+        
+
+                        </div>
+                    </div>
+            
+            <div class="row">
+
+                <!-- <div class="col-lg-4 cursor-pointer" data-toggle="tooltip" title="Click to load Graph">
+                    <div class="panel text-center panel-flat border-left-xlg border-left-warning">
+                        <div class="panel-body text-center">
+                            <div id="cpu_percent"></div>
+                            <div>CPU USAGE</div>
+                        </div>
+                    </div>
+                </div> -->
+              <!--   <div class="col-lg-4 cursor-pointer" data-toggle="tooltip" title="Click to load Graph">
+                      
+                    <div class="panel text-center panel-flat border-left-xlg border-left-purple">
+                        <div class="panel-body text-center">
+                            
+                             <div id="memory_percent"></div> 
+                            <div>RAM USAGE</div>
+                        </div>
+                    </div>
+                </div> -->
+              <!--   <div class="col-lg-4 cursor-pointer" data-toggle="tooltip" title="Click to load Graph">
+                    <div class="panel text-center panel-flat border-left-xlg border-left-pink">
+                        <div class="panel-body text-center">
+                               
+                             <div id="storage_percent"></div>
+                            <div>STORAGE</div> 
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="col-lg-3 cursor-pointer" data-toggle="tooltip" title="Click to load Graph">
+                    <div class="panel text-center panel-flat border-left-xlg border-left-success">
+                        <div class="panel-body text-center">
+                            <div>6.95kbps</div>
+                            <div>NETWORK</div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+    
+                                <div class="row">
+                                     <div class="col-lg-4">
+<!--                                         <h3 class="panel-title"> Ingress Bandwidth<a class="heading-elements-toggle"><i class="icon-more"></i></a></h3>
+ -->                                    </div> 
+                                    <div class="col-lg-8 row">
+                                        <div class="col-lg-10">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                        <input id="input-calender-user" type="text" class="form-control daterange-increments"
+                                                            value="" />
+                                                        <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+                                                    </div>
+                                            </div>
+                                        </div>                             
+    
+                                        <div class="col-lg-2" style="margin-top: 0px;">
+                                                <button type="button" class="btn btn-primary legitRipple" id="searchButton">Search</button>
+                                            </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+    
+                            <div class="panel-body">
+                                <div class="col-lg-12">
+                                <div id="chart_resource">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+          <!--   <div class="row">
+                <div class="col-md-12">
+
+                    <div class="panel text-center">
+                        <div class="panel-body">
+                            <div id="chart_resource">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default" style="height:285px;">
+                         <div class="panel-heading">
+                            <h6 class="panel-title">Memory<a class="heading-elements-toggle"><i
+                                        class="icon-more"></i></a></h6>
+
+                        </div> 
+
+                        <div class="panel-body">
+<!--                                 <div id="piechart"></div>
+ -->                               <!--  <div id="piechart" style="width: 500px; height: 500px;"></div> -->
+
+
+                             <div class="table-responsive">
+                                <table class="table table-bordered table-framed">
+                                    <thead>
+                                        <tr>
+                                            <th>Total Memory</th>
+                                            <th>Used Memory</th>
+                                            <th>Cache Memory</th>
+                                            <th>Buffer Memory</th>
+                                            <th>Shared Memory</th>
+                                            <th>Free Memory</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_memory">
+
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Storage<a class="heading-elements-toggle"><i
+                                        class="icon-more"></i></a></h6>
+
+                        </div>
+
+                        <div class="panel-body">
+<!--                                 <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+ -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-framed">
+                                    <thead>
+                                        <tr>
+                                            <th>Path</th>
+                                            <th>Total</th>
+                                            <th>Used</th>
+                                            <th>Free </th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_storage">
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Processor<a class="heading-elements-toggle"><i
+                                        class="icon-more"></i></a></h6>
+
+                        </div>
+
+                        <div class="panel-body" style="max-height: 400px; overflow-y: scroll;">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-framed">
+                                    <thead>
+                                        <tr>
+                                            <th>CPU Core</th>
+                                            <th>Processor Load</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_cpu">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Network Interfaces<a class="heading-elements-toggle"><i
+                                        class="icon-more"></i></a></h6>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-framed">
+                                    <thead>
+                                        <tr>
+                                            <th>Device</th>
+                                            <th>IP Address</th>
+                                            <th>MAC Address</th>
+                                            <th>Status </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_network">
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div th:include="footer :: footer"></div>
+
+
+</body>
+
+<script src="/lib/js/highcharts.js"></script>
+<script type="text/javascript" src="/page_js/common.js"></script>
+<script type="text/javascript" src="/page_js/devicestatus.js"></script>
+
+
+</html>

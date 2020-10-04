@@ -1,0 +1,40 @@
+<html>
+<body>
+
+    <div th:fragment="menu" th:remove="tag">
+        <div class="navbar navbar-inverse bg-indigo">
+
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">FLOW GENERATOR</a>
+
+
+            </div>
+
+            <div class="navbar-collapse collapse" id="navbar-mobile">
+
+                <ul class="nav navbar-nav navbar-right">
+
+
+                    <li class="dropdown dropdown-user">
+                        <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+                           <i class="icon-user"></i>
+
+                            <span></span>
+                            <i class="caret"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="/resetpassword"><i class="icon-cog3"></i> Change password</a></li>
+                            <li><a href="/logout"><i class="icon-switch2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

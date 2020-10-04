@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FLOW GENERATOR</title>
+	<link rel="icon" type="image/png" href="/images/timg.png" />
+
+    <!-- Global stylesheets -->
+    <link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/core.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/components.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/colors.css" rel="stylesheet" type="text/css" />
+    <!-- /global stylesheets -->
+
+    <script type="text/javascript" src="/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+    <script type="text/javascript" src="/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="/assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script type="text/javascript" src="/assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script type="text/javascript" src="/assets/js/core/libraries/jquery.cookie.js"></script>
+    <!-- Theme JS files -->
+
+    <script type="text/javascript" src="/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="/assets/js/pages/form_select2.js"></script>
+  
+</head>
+
+<body class="navbar-bottom login-container">
+
+    <div th:include="template :: menu"></div>
+    <div th:include="menu_list :: menu_list"></div>
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h3 class="panel-title">Egress Bandwidth<a class="heading-elements-toggle"><i class="icon-more"></i></a></h3>
+                                </div>
+
+                                <div class="col-lg-4 row">
+                                    <div class="col-lg-10">
+                                        <div class="form-group">
+                                            <label>Select Time Range: </label>
+                                            <div class="input-group">
+						                        <span class="input-group-addon"><i class="icon-calendar22"></i></span>
+						                        <input id="input-calender-user" type="text" class="form-control daterange-increments"  />
+						                        
+						                    </div>
+                                        </div>
+                                    </div>                             
+
+                                    <div class="col-lg-2" style="margin-top: 27px;">
+                                         <button type="button" class="btn btn-primary legitRipple" id="searchButton">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div id="chart_egress_bps">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Egress Bandwidth per Collector<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-framed">
+                                <thead>
+                                    <tr>
+                                        <th>Netflow Collector</th>
+                                        <th>Average bandwidth</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tablebody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div th:include="footer :: footer"></div>
+
+</body>
+<script src="/lib/js/highcharts.js"></script>
+<script type="text/javascript" src="/page_js/common.js"></script>
+<script type="text/javascript" src="/page_js/reports_egress_bps.js"></script>
+
+</html>

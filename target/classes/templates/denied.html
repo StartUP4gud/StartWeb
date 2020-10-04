@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Denied</title>
+	<link rel="icon" type="image/png" href="/images/timg.png" />
+		<link href="/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css"/>
+		<link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<link href="/assets/css/core.css" rel="stylesheet" type="text/css"/>
+		<link href="/assets/css/components.css" rel="stylesheet" type="text/css"/>
+		<link href="/assets/css/colors.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="navbar-bottom login-container">
+	<div class="navbar navbar-inverse bg-indigo">
+		<div class="navbar-header">
+			<ul class="nav navbar-nav pull-right visible-xs-block">
+				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+			</ul>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav navbar-right">
+              
+			</ul>
+		</div>
+	</div>
+	<div class="page-container">
+		<div class="page-content">
+			<div class="content-wrapper">
+                <div class="alert alert-danger" role="alert" style="text-align: center;">
+                    Login Failure, Crossed Maximum Attempts, Please try again after 10 minutes
+                  </div>
+			</div>
+		</div>
+	</div>
+	<div class="navbar navbar-default navbar-fixed-bottom footer">
+		<ul class="nav navbar-nav visible-xs-block">
+			<li><a class="text-center collapsed" data-toggle="collapse" data-target="#footer"><i class="icon-circle-up2"></i></a></li>
+		</ul>
+	</div>
+</body>
+</html>
